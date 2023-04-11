@@ -176,7 +176,7 @@ Click Attach Policies
 
 Your role policies should look something like this (the blurred policy ID will be different for you, so I’ve blurred it out to make it simpler):
 
-![policyattach](images/policyattach.png)
+![policyattach](images/8roleadd.png)
 
 This is required so the Lambda function can read from the DynamoDB Stream. In the real world this should be locked down a lot further, but in this case, we’re okay with the Lambda having full DynamoDB permissions to ***all*** tables.
 
