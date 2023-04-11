@@ -1,5 +1,3 @@
-# aws-dynamodb-lambda-trigger
-cat adopted message using aws-dynamodb-lambda-trigger
 
 # DynamoDB Lambda Triggers
 
@@ -62,15 +60,15 @@ Head to Explore table items
 
 To show why we created a global secondary index on the table, click on **Scan or query items**, select **********Query**********, change the ************Index************ to “adopted-index” and search for “true” in the partition key. 
 
-![query](images/5query.png)
+![query](images/3querying.png)
 
 Searching for “true” will return no objects (assuming you set all of your cat records to adopted: false):
 
-![Untitled](images/Untitled%203.png)
+![Untitled](images/true.png)
 
 Searching for “false” will return all cats that haven’t been adopted:
 
-![Untitled](images/Untitled%204.png)
+![Untitled](images/5query.png)
 
 **Querying** uses indexes, which is far more efficient and cost effective, without having this secondary index we would need to **Scan** the table to look for cats which are/aren’t adopted, which means DynamoDB iterates over every record and checks that key. With tables that have thousands or millions of records, this can be very expensive (and slow).
 
@@ -110,7 +108,7 @@ You will receive a confirmation email shortly after, with a link you need to cli
 
 Your subscription should now be in the Confirmed state:
 
-![Untitled](images/Untitled%205.png)
+![Untitled](images/sub.png)
 
 ## Stage 4 - Create the Lambda
 
@@ -158,17 +156,17 @@ This code basically iterates through all the records that DynamoDB passes to the
 
 Don’t forget to click Deploy to save the function.
 
-![Untitled](images/Untitled%206.png)
+![deplouy](images/6deploy.png)
 
 ## Stage 4a - Add DynamoDB permissions to the Lambda role
 
-Head to the Lambda console: [https://ap-southeast-2.console.aws.amazon.com/lambda/home?region=ap-southeast-2#/functions](https://ap-southeast-2.console.aws.amazon.com/lambda/home?region=ap-southeast-2#/functions)
+Head to the Lambda console: [https://us-east-1.console.aws.amazon.com/lambda/home?region=ap-southeast-2#/functions](https://us-east-1.console.aws.amazon.com/lambda/home?region=ap-southeast-2#/functions)
 
 Click on your newly created function, then the **Configuration** tab, then **Permissions.**
 
 Click on the role 
 
-![Untitled](images/Untitled%207.png)
+![permissions](images/7permissions.png)
 
 Click on Add Permissions and then Attach Policies
 
@@ -178,13 +176,13 @@ Click Attach Policies
 
 Your role policies should look something like this (the blurred policy ID will be different for you, so I’ve blurred it out to make it simpler):
 
-![Untitled](images/Untitled%208.png)
+![policyattach](images/policyattach.png)
 
 This is required so the Lambda function can read from the DynamoDB Stream. In the real world this should be locked down a lot further, but in this case, we’re okay with the Lambda having full DynamoDB permissions to ***all*** tables.
 
 ## Stage 5 - Enabling the DynamoDB Stream
 
-Head back to the DynamoDB console: [https://ap-southeast-2.console.aws.amazon.com/dynamodbv2/home?region=ap-southeast-2#table?initialTagKey=&name=cat-adoption&tab=streams](https://ap-southeast-2.console.aws.amazon.com/dynamodbv2/home?region=ap-southeast-2#table?initialTagKey=&name=cat-adoption&tab=streams)
+Head back to the DynamoDB console: [https://us-east-1.console.aws.amazon.com/dynamodbv2/home?region=ap-southeast-2#table?initialTagKey=&name=cat-adoption&tab=streams](https://us-east-1.console.aws.amazon.com/dynamodbv2/home?region=ap-southeast-2#table?initialTagKey=&name=cat-adoption&tab=streams)
 
 Click on the ************************************Export and streams************************************ tab, then under **DynamoDB stream details** click Enable
 
@@ -198,29 +196,29 @@ On the next page, under **Lambda function** select your newly created “cat-ado
 
 Click Create trigger
 
-![Untitled](images/Untitled%209.png)
+![9cat-adpot-fucn.png](images/9cat-adpot-fucn.png)
 
 ## Stage 6 - Testing it out
 
-Head back to the DynamoDB console: [https://ap-southeast-2.console.aws.amazon.com/dynamodbv2/home?region=ap-southeast-2](https://ap-southeast-2.console.aws.amazon.com/dynamodbv2/home?region=ap-southeast-2#table?initialTagKey=&name=cat-adoption&tab=streams)
+Head back to the DynamoDB console: [https://us-east-1.console.aws.amazon.com/dynamodbv2/home?region=ap-southeast-2](https://us-east-1.console.aws.amazon.com/dynamodbv2/home?region=ap-southeast-2#table?initialTagKey=&name=cat-adoption&tab=streams)
 
 Click on Explore table items
 
 You should see the cat items you created earlier, if not, click on Scan → Run
 
-![Untitled](images/Untitled%2010.png)
+![scanruntest](images/scanruntest.png)
 
 Change one of the “adopted” fields to “true”
 
-![Untitled](images/Untitled%2011.png)
+![datachanges.png](images/datachanges.png)
 
 After a few seconds you should receive an email telling you that cat has been adopted!
 
-![Untitled](images/Untitled%2012.png)
+![Untitled](images/adopted.png)
 
 ## Stage 7 - Clean up
 
-Head to the DynamoDB console: [https://ap-southeast-2.console.aws.amazon.com/dynamodbv2/home?region=ap-southeast-2#tables](https://ap-southeast-2.console.aws.amazon.com/dynamodbv2/home?region=ap-southeast-2#tables)
+Head to the DynamoDB console: [https://us-east-1.console.aws.amazon.com/dynamodbv2/home?region=ap-southeast-2#tables](https://us-east-1.console.aws.amazon.com/dynamodbv2/home?region=ap-southeast-2#tables)
 
 Select the table you created and click Delete
 
@@ -230,7 +228,7 @@ Type “delete” into the confirmation field and click Delete table
 
 ![Untitled](images/Untitled%2013.png)
 
-Head to the Lambda console: [https://ap-southeast-2.console.aws.amazon.com/lambda/home?region=ap-southeast-2#/functions](https://ap-southeast-2.console.aws.amazon.com/lambda/home?region=ap-southeast-2#/functions)
+Head to the Lambda console: [https://us-east-1.console.aws.amazon.com/lambda/home?region=ap-southeast-2#/functions](https://us-east-1.console.aws.amazon.com/lambda/home?region=ap-southeast-2#/functions)
 
 Select the function you created, then click Actions → Delete
 
@@ -238,7 +236,7 @@ Select the function you created, then click Actions → Delete
 
 Type “delete” into the confirmation field, and click Delete
 
-Head to the SNS console: [https://ap-southeast-2.console.aws.amazon.com/sns/v3/home?region=ap-southeast-2#/topics](https://ap-southeast-2.console.aws.amazon.com/sns/v3/home?region=ap-southeast-2#/topics)
+Head to the SNS console: [https://us-east-1.console.aws.amazon.com/sns/v3/home?region=ap-southeast-2#/topics](https://us-east-1.console.aws.amazon.com/sns/v3/home?region=ap-southeast-2#/topics)
 
 Select your Topic and click Delete
 
@@ -260,7 +258,7 @@ Select the role, and click Delete
 
 Type “cat-adoption-function-role” into the confirmation field, and click Delete
 
-Head to the Cloudwatch Logs console: [https://ap-southeast-2.console.aws.amazon.com/cloudwatch/home?region=ap-southeast-2#logsV2:log-groups](https://ap-southeast-2.console.aws.amazon.com/cloudwatch/home?region=ap-southeast-2#logsV2:log-groups)
+Head to the Cloudwatch Logs console: [https://us-east-1.console.aws.amazon.com/cloudwatch/home?region=ap-southeast-2#logsV2:log-groups](https://us-east-1.console.aws.amazon.com/cloudwatch/home?region=ap-southeast-2#logsV2:log-groups)
 
 Search for the "/aws/lambda/cat-adoption-function” Log Group
 
