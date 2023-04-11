@@ -108,7 +108,7 @@ You will receive a confirmation email shortly after, with a link you need to cli
 
 Your subscription should now be in the Confirmed state:
 
-![Untitled](images/sub.png)
+![subscribed](images/subsubscribed.png)
 
 ## Stage 4 - Create the Lambda
 
