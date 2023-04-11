@@ -2,7 +2,6 @@
 # DynamoDB Lambda Triggers
 
 # Overview
-
 We will be setting up a DynamoDB table full of cats that are waiting to be adopted. When the `adopted` field is updated to `true`, a Lambda will be triggered that will send an email to the adoption center telling them that “[cat abc] has been adopted!”
 
 
@@ -108,7 +107,7 @@ You will receive a confirmation email shortly after, with a link you need to cli
 
 Your subscription should now be in the Confirmed state:
 
-![subscribed](images/subsubscribed.png)
+![subscribed](images/subscribed.png)
 
 ## Stage 4 - Create the Lambda
 
