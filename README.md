@@ -225,13 +225,13 @@ Select “Delete all CloudWatch alarms for this table” and leave “Create a b
 
 Type “delete” into the confirmation field and click Delete table
 
-![Untitled](images/Untitled%2013.png)
+
 
 Head to the Lambda console: [https://us-east-1.console.aws.amazon.com/lambda/home?region=ap-southeast-2#/functions](https://us-east-1.console.aws.amazon.com/lambda/home?region=ap-southeast-2#/functions)
 
 Select the function you created, then click Actions → Delete
 
-![Untitled](images/Untitled%2014.png)
+
 
 Type “delete” into the confirmation field, and click Delete
 
@@ -241,7 +241,7 @@ Select your Topic and click Delete
 
 Type “delete me” into the confirmation field, and click Delete
 
-![Untitled](images/Untitled%2015.png)
+
 
 Now go to the Subscriptions page, select your subscription, click Delete, and then Delete
 
@@ -253,7 +253,7 @@ Under **Roles**, search for "cat-adoption”
 
 Select the role, and click Delete
 
-![Untitled](images/Untitled%2017.png)
+
 
 Type “cat-adoption-function-role” into the confirmation field, and click Delete
 
@@ -263,7 +263,7 @@ Search for the "/aws/lambda/cat-adoption-function” Log Group
 
 Select the log group, click Actions → Delete
 
-![Untitled](images/Untitled%2018.png)
+
 
 In the confirmation popup, click Delete
 
