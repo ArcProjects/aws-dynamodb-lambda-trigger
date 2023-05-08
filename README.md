@@ -158,7 +158,7 @@ Don’t forget to click Deploy to save the function.
 
 ![deplouy](images/6deploy.png)
 
-## Stage 4a - Add DynamoDB permissions to the Lambda role
+## Stage 4a - Add DynamoDB,SNS permissions permissions to the Lambda role
 
 Head to the Lambda console: [https://us-east-1.console.aws.amazon.com/lambda/home?region=ap-southeast-2#/functions](https://us-east-1.console.aws.amazon.com/lambda/home?region=ap-southeast-2#/functions)
 
